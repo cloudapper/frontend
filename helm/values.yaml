@@ -5,22 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: sefose/simpleapp-backend
+  repository: sefose/simpleapp-frontend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "0.0.1"
-
-env:
-  - name: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
-    value: org.hibernate.dialect.MySQL5InnoDBDialect
-  - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-    value: update
-  - name: SPRING_DATASOURCE_URL
-    value: jdbc:mysql://simpleapp-mysql:3306/simpleapp
-  - name: SPRING_DATASOURCE_USERNAME
-    value: simpleapp
-  - name: SPRING_DATASOURCE_PASSWORD
-    value: simpleapp
 
 imagePullSecrets: []
 nameOverride: ""
@@ -28,7 +16,7 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -36,6 +24,10 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
+
+env:
+  - name: APIURL
+    value: http://kubernetes.docker.internal:30003
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -50,8 +42,8 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 8080
-  nodePort: 30003
+  port: 80
+  nodePort: 30000
 
 ingress:
   enabled: false

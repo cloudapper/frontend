@@ -1,25 +1,16 @@
-FROM maven:3.6.3-openjdk-11-slim as builder
-
-RUN apt-get -y update
-RUN apt-get -y upgrade
-
+FROM node:15.5.1-alpine3.12 as builder
 WORKDIR /app
+COPY package.json ./
+RUN npm install
+COPY . ./
+RUN npm run build
 
-COPY pom.xml .
+FROM nginx:1.19.6-alpine
+RUN apk add --no-cache bash
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY docker-entrypoint.sh generate_config_js.sh /
+RUN chmod +x docker-entrypoint.sh generate_config_js.sh
+EXPOSE 80
 
-RUN mvn dependency:go-offline -B
-
-COPY src src
-
-RUN mvn package -DskipTests
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-
-FROM openjdk:11.0.9.1-jre-slim-buster
-
-ARG DEPENDENCY=/app/target/dependency
-
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
-
-ENTRYPOINT ["java", "-cp", "app:app/lib/*", "de.f73.simplebackend.SimplebackendApplication"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
