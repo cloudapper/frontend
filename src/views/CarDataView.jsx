@@ -10,19 +10,15 @@ const CarDataView = () => {
 
     useEffect(() => {
         findByFin(fin).then(res => {
-            console.log('res', res)
             setCarData(res.data)
         })
     }, [ fin, setCarData ])
 
     return (
         <>
-        <Carousel
-        indicators="true"
-        >
+        <Carousel>
             {carData.map((carDatum, index) => {
-                console.log('carDatum', carDatum)
-                return <Carousel.Item key={carDatum.fin + index}><Carousel.Caption><h3>{Date.parse(carDatum.timestamp)}</h3></Carousel.Caption><CarDataSet carDataArray={carDatum.data} /></Carousel.Item>
+                return <Carousel.Item key={carDatum.fin + index}><Carousel.Caption><h3>{new Date(carDatum.timestamp + 'Z').toUTCString()}</h3></Carousel.Caption><CarDataSet carDataArray={carDatum.data} /></Carousel.Item>
             })}
         </Carousel>
       </>
@@ -31,5 +27,3 @@ const CarDataView = () => {
 }
 
 export default CarDataView;
-
-{/* <CarDataSet carDataArray={carDatum.data} /> */}
