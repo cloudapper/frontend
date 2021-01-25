@@ -13,16 +13,16 @@ const CarDataView = () => {
             console.log('res', res)
             setCarData(res.data)
         })
-    }, [carData, fin, setCarData ])
+    }, [ fin, setCarData ])
 
     return (
         <>
         <Carousel
         indicators="true"
         >
-            {carData.map(carDatum => {
+            {carData.map((carDatum, index) => {
                 console.log('carDatum', carDatum)
-                return <Carousel.Item><CarDataSet carDataArray={carDatum.data} /><Carousel.Caption><h3>{carDatum.timestamp}</h3></Carousel.Caption></Carousel.Item>
+                return <Carousel.Item key={carDatum.fin + index}><Carousel.Caption><h3>{Date.parse(carDatum.timestamp)}</h3></Carousel.Caption><CarDataSet carDataArray={carDatum.data} /></Carousel.Item>
             })}
         </Carousel>
       </>
