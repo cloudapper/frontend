@@ -4,10 +4,10 @@ import Card from 'react-bootstrap/Card'
 
 const CarDataSet = ({carDataArray}) => {
     return (
-            <Card bg="dark">
-                <Card.Body className="mb-5 pb-5 ml-5 pl-5 text-center">
-        {carDataArray.map((datum, index) => {
-            return (<span key={index} className="text-white">
+            <Card>
+                <Card.Body className="m-2">
+                    {carDataArray.map((datum, index) => {
+                        return (<span key={index}>
                 {datum} <br/>
                 </span>
                 )}

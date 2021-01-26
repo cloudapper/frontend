@@ -2,10 +2,13 @@ import React, {useState} from 'react';
 import CarDataView from './views/CarDataView';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { initInterceptors } from './service/interceptors'
 
 const App = () => {
 
   const [view, setview] = useState("list")
+
+  initInterceptors();
 
   function viewSwitch(view) {
     switch (view) {
