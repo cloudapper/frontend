@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import CarDataView from './views/CarDataView';
-import DummyCreator from './views/DummyCreator';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -13,7 +12,7 @@ const App = () => {
       case "list":
         return(<CarDataView></CarDataView>)
       case "creator":
-        return(<DummyCreator></DummyCreator>)  
+        return(<CarDataView></CarDataView>)  
       default:
         break;
     }
