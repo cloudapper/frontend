@@ -7,7 +7,7 @@ import { initInterceptors } from './service/interceptors'
 const App = () => {
 
   const [view, setview] = useState("list")
-
+  console.log('starting interceptor')
   initInterceptors();
 
   function viewSwitch(view) {
