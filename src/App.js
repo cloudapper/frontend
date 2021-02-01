@@ -6,10 +6,9 @@ import Login from './components/Login';
 
 const App = () => {
 
-  const [view, setview] = useState("list")
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  function viewSwitch(view) {
+  function viewSwitch() {
     switch (isLoggedIn) {
       case true:
         return(<CarDataView ></CarDataView>)
@@ -27,12 +26,11 @@ const App = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link onClick={() => setview("list")} active={view ==="list"}>List Data</Nav.Link>
-          <Nav.Link onClick={() => setview("creator")} active={view ==="creator"}>credit</Nav.Link>
+          <Nav.Link onClick={() => setIsLoggedIn(false)} active={isLoggedIn}>Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    {viewSwitch(view)}
+    {viewSwitch()}
     </>
   );
 }
