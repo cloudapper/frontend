@@ -2,20 +2,19 @@ import React, {useState} from 'react';
 import CarDataView from './views/CarDataView';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { initInterceptors } from './service/interceptors'
+import Login from './components/Login';
 
 const App = () => {
 
   const [view, setview] = useState("list")
-  
-  initInterceptors();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   function viewSwitch(view) {
-    switch (view) {
-      case "list":
-        return(<CarDataView></CarDataView>)
-      case "creator":
-        return(<CarDataView></CarDataView>)  
+    switch (isLoggedIn) {
+      case true:
+        return(<CarDataView ></CarDataView>)
+      case false:
+        return(<Login loginCB={setIsLoggedIn} />)  
       default:
         break;
     }

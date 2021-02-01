@@ -4,15 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
-import { ReactKeycloakProvider } from '@react-keycloak/web'
-import keycloak from './keycloak'
 
 
 ReactDOM.render(
     <React.StrictMode>
-  <ReactKeycloakProvider authClient={keycloak}>
       <App />
-  </ReactKeycloakProvider>
     </React.StrictMode>,
   document.getElementById('root')
 );
