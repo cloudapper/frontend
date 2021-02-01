@@ -4,19 +4,19 @@ import CarDataSet from '../components/CarDataSet'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import { getFin } from '../service/AccountService'
 
 
 const CarDataView = () => {
-    const fin = "VWVWWFSDH666";
    
     const [carData, setCarData] = useState([]);
     const [minutes, setMinutes] = useState(10);
 
     useEffect(() => {
-        findByFinLastXMinutes(fin, minutes).then(res => {
+        findByFinLastXMinutes(getFin(), minutes).then(res => {
             setCarData(res.data);
         })
-    }, [ fin, setCarData, minutes])
+    }, [setCarData, minutes])
 
     return (
         <>
