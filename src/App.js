@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import CarDataView from './views/CarDataView';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -8,16 +8,17 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  function viewSwitch() {
-    switch (isLoggedIn) {
-      case true:
-        return(<CarDataView ></CarDataView>)
-      case false:
-        return(<Login loginCB={setIsLoggedIn} />)  
-      default:
-        break;
+  const viewSwitch =() => {
+    if (isLoggedIn) {
+      return(<CarDataView ></CarDataView>)
+    } else {
+      return(<Login loginCB={setIsLoggedIn} />)  
     }
   }
+
+  useEffect(() => {
+    console.log('isLoggedIn', isLoggedIn)
+  }, [isLoggedIn])
 
   return (
     <>
