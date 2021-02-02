@@ -21,7 +21,7 @@ const CarDataView = () => {
     return (
         <>
         <Dropdown className="m-2">
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
                 {"Daten der letzten " + minutes + " Minuten"}
             </Dropdown.Toggle>
 

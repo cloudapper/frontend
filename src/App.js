@@ -8,7 +8,7 @@ import { getFin } from './service/AccountService';
 
 const App = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   const viewSwitch =() => {
     if (isLoggedIn) {
@@ -25,10 +25,10 @@ const App = () => {
 
   return (
     <>
-    <Navbar bg="light" expand="lg">
+    <Navbar variant="dark" bg="primary" expand="lg">
       <Navbar.Brand>Auto Daten List Informationen System (ADLIS) 
         {isLoggedIn &&
-        <Badge pill variant="secondary" style={{fontSize: 10}}>FIN: {getFin()}
+        <Badge pill className="ml-2" variant="light" style={{fontSize: 10}}>FIN: {getFin()}
         </Badge>}
         </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
