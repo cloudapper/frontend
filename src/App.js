@@ -12,7 +12,7 @@ const App = () => {
   const loginCB = success => {
     setIsLoggedIn(success);
     if(!success) {
-      altert("Wrong credentials! Please try again or sign up!")
+      alert("Wrong credentials! Please try again or sign up!")
     }
   }
 
