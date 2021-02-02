@@ -9,11 +9,18 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  const loginCB = success => {
+    setIsLoggedIn(success);
+    if(!success) {
+      altert("Wrong credentials! Please try again or sign up!")
+    }
+  }
+
   const viewSwitch =() => {
     if (isLoggedIn) {
       return(<CarDataView ></CarDataView>)
     } else {
-      return(<Login loginCB={setIsLoggedIn} />)  
+      return(<Login loginCB={loginCB} />)  
     }
   }
 
