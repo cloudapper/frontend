@@ -4,11 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Badge from 'react-bootstrap/Badge';
 import Login from './components/Login';
-import { getFin } from './service/AccountService';
 
 const App = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const viewSwitch =() => {
     if (isLoggedIn) {
@@ -28,7 +27,7 @@ const App = () => {
     <Navbar variant="dark" bg="primary" expand="lg">
       <Navbar.Brand>Auto Daten List Informationen System (ADLIS) 
         {isLoggedIn &&
-        <Badge pill className="ml-2" variant="light" style={{fontSize: 10}}>FIN: {getFin()}
+        <Badge pill className="ml-2" variant="light" style={{fontSize: 10}}>FIN: {localStorage.getItem("fin")}
         </Badge>}
         </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
