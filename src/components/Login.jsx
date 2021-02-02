@@ -21,7 +21,11 @@ const Login = ({loginCB}) => {
 
 
     const handleButtonClick = () => {
-        formPurpose.buttonFunction({username: fin, password}, loginCB)
+        if(fin.length < 3 || password.length < 3) {
+            alert("fin and password must have at least 3 characters")
+        } else {
+            formPurpose.buttonFunction({username: fin, password}, loginCB)
+        }
     }
 
     const handleLinkClick = () => {
