@@ -18,9 +18,10 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
-    console.log('isLoggedIn', isLoggedIn)
-  }, [isLoggedIn])
+  const logOut = () => {
+    setIsLoggedIn(false);
+    localStorage.clear();
+  }
 
   return (
     <>
@@ -33,7 +34,7 @@ const App = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link onClick={() => setIsLoggedIn(false)} active={isLoggedIn}>Log Out</Nav.Link>
+          <Nav.Link onClick={logOut} active={isLoggedIn}>Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
