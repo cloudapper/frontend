@@ -20,7 +20,8 @@ const Login = ({loginCB}) => {
     const [formPurpose, setFormPorpose] = useState(login);
 
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
+        e.preventDefault();
         if(fin.length < 3 || password.length < 3) {
             alert("fin and password must have at least 3 characters")
         } else {
@@ -39,7 +40,7 @@ const Login = ({loginCB}) => {
 
 
     return (
-    <Form className="ml-5 mr-5">
+    <Form className="ml-5 mr-5" onSubmit={handleButtonClick}>
         <h3>{formPurpose.buttonText}</h3>
         <Form.Group controlId="formBasicUsername">
             <Form.Label>FIN</Form.Label>
@@ -53,7 +54,7 @@ const Login = ({loginCB}) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
-        <Button variant="primary" onClick={handleButtonClick} >
+        <Button variant="primary" type="submit">
             {formPurpose.buttonText}
         </Button>
         <br/>
